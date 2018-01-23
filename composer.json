@@ -1,0 +1,16 @@
+{
+	"name": "baschte/ctype-column-restriction",
+	"type": "typo3-cms-extension",
+	"description": "allows to restrict columns to specific ctypes",
+	"homepage": "https://www.baschte.de",
+	"version": "0.0.1",
+	"license": "GPL-2.0+",
+	"require": {
+		"typo3/cms": "^8.7.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"Baschte\\CtypeColumnRestriction\\": "Classes"
+		}
+	}
+}
