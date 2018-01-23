@@ -45,6 +45,7 @@ class PageLayoutView extends \TYPO3\CMS\Backend\View\PageLayoutView
 
         if (get_class($GLOBALS['SOBE']) === PageLayoutController::class || is_subclass_of($GLOBALS['SOBE'], PageLayoutController::class)) {
             $pageRenderer->loadRequireJsModule('TYPO3/CMS/CtypeColumnRestriction/DragDrop');
+            $pageRenderer->addCssInlineBlock(null, ".ui-draggable-handle { z-index: 1 !important; } .ui-draggable-dragging { opacity: 0.5; z-index: 101 !important; }");
         }
     }
 
