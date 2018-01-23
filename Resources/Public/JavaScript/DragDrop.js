@@ -48,15 +48,13 @@ define(['jquery', 'jquery-ui/droppable', 'TYPO3/CMS/Backend/LayoutModule/DragDro
 		DragDrop.originalStyles = $element.get(0).style.cssText;
 		$element.children(DragDrop.dragIdentifier).addClass('dragitem-shadow');
 		$element.append('<div class="ui-draggable-copy-message">' + TYPO3.lang['dragdrop.copy.message'] + '</div>');
-		// Hide create new element button
-		$element.children(DragDrop.dropZoneIdentifier).addClass('drag-start');
-		$element.closest(DragDrop.columnIdentifier).removeClass('active');
-
-		$element.parents(DragDrop.columnHolderIdentifier).find(DragDrop.addContentIdentifier).hide();
-		$element.find(DragDrop.dropZoneIdentifier).hide();
 
 		//get dragged element ctype
 		var $elementCType = $element.find('.t3-ctype-identifier').data('ctype');
+
+		// Hide create new element button
+		$element.children(DragDrop.dropZoneIdentifier).addClass('drag-start');
+		$element.closest(DragDrop.columnIdentifier).removeClass('active');
 
 		// make the drop zones visible
 		$(DragDrop.dropZoneIdentifier).each(function () {
@@ -69,6 +67,11 @@ define(['jquery', 'jquery-ui/droppable', 'TYPO3/CMS/Backend/LayoutModule/DragDro
 				//if ctype is found in allowed ctype string
 				//allow drop area
 				if($allowedCtypes === '*' || $allowedCtypes.indexOf($elementCType) !== -1) {
+
+					// hide new content buttons in allowed columns
+					$element.parents(DragDrop.columnHolderIdentifier).find('[id*="colpos-' + $colPos + '-page"]').hide()
+					$element.find($(this)).hide();
+
 					$(this).addClass(DragDrop.validDropZoneClass);
 				}
 
